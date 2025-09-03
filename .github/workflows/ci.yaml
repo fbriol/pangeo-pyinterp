@@ -237,7 +237,11 @@ jobs:
         env:
           # Install dependencies inside the manylinux container
           CIBW_BEFORE_ALL_LINUX: >
-            yum install -y boost-devel eigen3-devel
+            for i in {1..3}; do
+              yum update -y &&
+              yum install -y boost-devel eigen3-devel &&
+              break || sleep 15;
+            done
           CIBW_BEFORE_BUILD: >
             pip install -U cmake
           # Limit the build to Python 3.10+
