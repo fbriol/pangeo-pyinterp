@@ -41,7 +41,8 @@ class _CustomBuildMetaBackend(setuptools.build_meta._BuildMetaBackend):
 
     def run_setup(self, setup_script='setup.py'):
         """Run the setup script."""
-        args = usage(self.config_settings or {})  # type: ignore[arg-type]
+        config_settings = getattr(self, 'config_settings', None)
+        args = usage(config_settings or {})  # type: ignore[arg-type]
         setuptools_args = []
         if args.c_compiler:
             setuptools_args.append(f"--c-compiler={args.c_compiler}")
