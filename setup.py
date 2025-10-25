@@ -3,7 +3,8 @@
 # All rights reserved. Use of this source code is governed by a
 # BSD-style license that can be found in the LICENSE file.
 """This script is the entry point for building, distributing and installing
-this module using distutils/setuptools."""
+this module using distutils/setuptools.
+"""
 from __future__ import annotations
 
 from typing import Any, ClassVar
@@ -54,7 +55,8 @@ def distutils_dirname(prefix=None, extname=None) -> pathlib.Path:
 
 def execute(cmd) -> str:
     """Executes a command and returns the lines displayed on the standard
-    output."""
+    output.
+    """
     with subprocess.Popen(cmd,
                           shell=True,
                           stdout=subprocess.PIPE,
@@ -199,6 +201,7 @@ class CMakeExtension(setuptools.Extension):
 # pylint: disable=too-many-instance-attributes
 class BuildExt(setuptools.command.build_ext.build_ext):
     """Build everything needed to install."""
+
     user_options = setuptools.command.build_ext.build_ext.user_options
     user_options += [
         ('build-unittests', None, 'Build the unit tests of the C++ extension'),
@@ -216,7 +219,8 @@ class BuildExt(setuptools.command.build_ext.build_ext):
 
     def initialize_options(self) -> None:
         """Set default values for all the options that this command
-        supports."""
+        supports.
+        """
         super().initialize_options()
         self.build_unittests = None
         self.code_coverage = None
@@ -390,12 +394,14 @@ class BuildExt(setuptools.command.build_ext.build_ext):
 
 class CxxTestRunner(setuptools.Command):
     """Compile and launch the C++ tests."""
+
     description: ClassVar[str] = 'run the C++ tests'
     user_options: ClassVar[list[tuple[str, str | None, str]]] = []
 
     def initialize_options(self):
         """Set default values for all the options that this command
-        supports."""
+        supports.
+        """
         if platform.system() == 'Windows':
             raise RuntimeError('Code coverage is not supported on Windows')
 
@@ -424,7 +430,9 @@ class CxxTestRunner(setuptools.Command):
 
 class SDist(setuptools.command.sdist.sdist):
     """Custom sdist command that copies the pytest configuration file into the
-    package."""
+    package.
+    """
+
     user_options = setuptools.command.sdist.sdist.user_options
 
     def run(self):
@@ -469,7 +477,6 @@ def main():
             'Operating System :: POSIX',
             'Operating System :: MacOS',
             'Operating System :: Microsoft :: Windows',
-            'Programming Language :: Python :: 3.10',
             'Programming Language :: Python :: 3.11',
             'Programming Language :: Python :: 3.12',
             'Programming Language :: Python :: 3.13',
