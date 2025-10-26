@@ -39,7 +39,7 @@ class _CustomBuildMetaBackend(setuptools.build_meta._BuildMetaBackend):
     Reference: https://setuptools.pypa.io/en/latest/build_meta.html
     """
 
-    def run_setup(self, setup_script='setup.py'):
+    def run_setup(self, setup_script: str = 'setup.py') -> None:
         """Run the setup script."""
         config_settings = getattr(self, 'config_settings', None)
         args = usage(config_settings or {})  # type: ignore[arg-type]

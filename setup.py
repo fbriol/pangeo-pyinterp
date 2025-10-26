@@ -183,19 +183,16 @@ def write_version_module(module: pathlib.Path, version: str,
 #
 # All rights reserved. Use of this source code is governed by a
 # BSD-style license that can be found in the LICENSE file.
-"""
-Get software version information
-================================
-"""
+"""Get software version information"""
 
 
 def release() -> str:
-    """Returns the software version number"""
+    """Return the software version number"""
     return "{version}"
 
 
 def date() -> str:
-    """Returns the creation date of this release"""
+    """Return the creation date of this release"""
     return "{date:%d %B %Y}"
 ''')
 
@@ -546,7 +543,7 @@ def main() -> None:
             exclude=['pyinterp.core*'],
         ),
         platforms=['POSIX', 'MacOS', 'Windows'],
-        python_requires='>=3.10',
+        python_requires='>=3.11',
         url='https://github.com/CNES/pangeo-pyinterp',
         version=revision(),
         zip_safe=False,
